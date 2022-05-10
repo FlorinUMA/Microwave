@@ -1,31 +1,28 @@
 package microondas;
 
-public class OpenWithNoItem implements MicrowaveState {
-
-	public OpenWithNoItem(Microwave m) {
+public class Cooking implements MicrowaveState{
+	public Cooking(Microwave m) {
 		m.lampConnection.lampOn();
-		//m.displayConnection.setDisplay("Intruducir alimentos");
-		m.heatingConnection.heatingOff();
+		m.heatingConnection.setPower(m.power);
+		m.heatingConnection.heatingOn();
 		m.turnableConnection.turnable_stop();
-		m.cooking = false;
-		m.withItem = false;
-		m.doorOpen = true;
+		m.cooking = true;
+		m.doorOpen = false;
+		m.withItem = true;
 	}
-
 	@Override
 	public void door_opened(Microwave m) {
-		// Invalid action. It will do nothing.
-
+		m.state = new OpenWithItem(m);
 	}
 
 	@Override
 	public void door_closed(Microwave m) {
-		m.state = new ClosedWithNoItem(m);
+		// Invalid action. It will do nothing.
 	}
 
 	@Override
 	public void item_placed(Microwave m) {
-		m.state = new OpenWithItem(m);
+		// Invalid action. It will do nothing.
 	}
 
 	@Override
@@ -36,31 +33,33 @@ public class OpenWithNoItem implements MicrowaveState {
 	@Override
 	public void cooking_start(Microwave m) {
 		// Invalid action. It will do nothing.
-
 	}
 
 	@Override
 	public void cooking_stop(Microwave m) {
-		// Invalid action. It will do nothing.
-
-	}
-
-	@Override
-	public void tick(Microwave m) {
-		// Invalid action. It will do nothing.
-
+		m.state = new ClosedWithItem(m);
 	}
 
 	@Override
 	public void timer_reset(Microwave m) {
+		m.state = new ClosedWithItem(m);
 		m.timer = 0;
-
 	}
 
 	@Override
 	public void power_reset(Microwave m) {
+		m.state = new ClosedWithItem(m);
 		m.power = 0;
+	}
 
+	@Override
+	public void tick(Microwave m) {
+		if (m.timer > 0) {
+			m.timer_desc();
+		} else {
+			cooking_stop(m);
+		}
+		
 	}
 
 }

@@ -38,27 +38,41 @@ public class Microwave {
 	}
 
 	public void power_inc() {
-		state.power_inc(this);
+		// state.power_inc(this);
+		power++;
+		displayConnection.setDisplay(Integer.toString(power));
 	}
 
 	public void power_desc() {
-		state.power_desc(this);
+		// state.power_desc(this);
+		if (power > 0) {
+			power--;
+			displayConnection.setDisplay(Integer.toString(power));
+		}
 	}
 
 	public void power_reset() {
 		state.power_reset(this);
+		displayConnection.setDisplay(Integer.toString(power));
 	}
 
 	public void timer_inc() {
-		state.timer_inc(this);
+		//state.timer_inc(this);
+		timer++;
+		displayConnection.setDisplay(Integer.toString(timer));
 	}
 
 	public void timer_desc() {
-		state.timer_desc(this);
+		//state.timer_desc(this);
+		if (timer > 0) {
+			timer--;
+			displayConnection.setDisplay(Integer.toString(timer));
+		}
 	}
 
 	public void timer_reset() {
 		state.timer_reset(this);
+		displayConnection.setDisplay(Integer.toString(timer));
 	}
 
 	public void cooking_start() {

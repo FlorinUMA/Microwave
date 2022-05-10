@@ -10,4 +10,8 @@ public class Lamp {
 	void lampOff() {
 		lampOn = false;
 	}
+	
+	boolean isLampOn() {
+		return lampOn;
+	}
 }
