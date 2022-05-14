@@ -2,64 +2,65 @@ package microondas;
 
 public class ClosedWithNoItem implements MicrowaveState {
 	public ClosedWithNoItem(Microwave m) {
-		m.heatingConnection.heatingOff();
-		m.lampConnection.lampOff();
-		m.turnableConnection.turnable_stop();
-		m.displayConnection.clearDisplay();
-		m.cooking = false;
-		m.withItem = false;
-		m.doorOpen = false;
+		m.getHeatingConnection().heatingOff();
+		m.getLampConnection().lampOff();
+		m.getTurnableConnection().turnable_stop();
+		m.getDisplayConnection().clearDisplay();
+		m.setCooking(false); 
+		m.setWithItem(false);
+		m.setDoorOpen(false);
 	}
 
 	@Override
 	public void door_opened(Microwave m) {
-		m.state = new OpenWithNoItem(m);
+		m.setState(new OpenWithNoItem(m));
 	}
 
 	@Override
 	public void door_closed(Microwave m) {
-		m.state = new ClosedWithItem(m);
+		// Invalid action. It will do nothing.
+		throw new IllegalStateException("Error: Door already closed");
 	}
 
 	@Override
 	public void item_placed(Microwave m) {
 		// Invalid action. It will do nothing.
-
+		throw new IllegalStateException("Error: Door closed");
 	}
 
 	@Override
 	public void item_removed(Microwave m) {
 		// Invalid action. It will do nothing.
-
+		throw new IllegalStateException("Error: Door closed");
 	}
 
 	@Override
 	public void cooking_start(Microwave m) {
 		// Invalid action. It will do nothing.
-
+		throw new IllegalStateException("Error: Microwave does not have food");
 	}
 
 	@Override
 	public void cooking_stop(Microwave m) {
 		// Invalid action. It will do nothing.
-
+		throw new IllegalStateException("Error: Microwave was not cooking");
 	}
 
 	@Override
 	public void tick(Microwave m) {
 		// Invalid action. It will do nothing.
-
+		throw new IllegalStateException("Error: Microwave is not cooking");
 	}
 
 	@Override
 	public void timer_reset(Microwave m) {
-		m.timer = 0;
+		m.setTimer(0);
 		
 	}
 
 	@Override
 	public void power_reset(Microwave m) {
-		m.power = 0;
+		m.setPower(0);
 	}
 
 }

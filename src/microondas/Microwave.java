@@ -1,17 +1,17 @@
 package microondas;
 
 public class Microwave {
-	boolean doorOpen;
-	int power;
-	int timer;
-	boolean cooking;
-	boolean withItem;
-	MicrowaveState state;
-	Heating heatingConnection = new Heating();
-	Lamp lampConnection = new Lamp();
-	Turnable turnableConnection = new Turnable();
-	Beeper beeperConnection = new Beeper();
-	Display displayConnection = new Display();
+	private boolean doorOpen;
+	private int power;
+	private int timer;
+	private boolean cooking;
+	private boolean withItem;
+	private MicrowaveState state;
+	private Heating heatingConnection = new Heating();
+	private Lamp lampConnection = new Lamp();
+	private Turnable turnableConnection = new Turnable();
+	private Beeper beeperConnection = new Beeper();
+	private Display displayConnection = new Display();
 
 	public Microwave() {
 		doorOpen = false;
@@ -86,4 +86,76 @@ public class Microwave {
 	public void tick() {
 		state.tick(this);
 	}
+	
+	//GETTERS Y SETTER. NOTHING IMPORTANT HERE
+	
+	boolean isDoorOpen() {
+		return doorOpen;
+	}
+
+	void setDoorOpen(boolean doorOpen) {
+		this.doorOpen = doorOpen;
+	}
+
+	int getPower() {
+		return power;
+	}
+
+	void setPower(int power) {
+		this.power = power;
+	}
+
+	int getTimer() {
+		return timer;
+	}
+
+	void setTimer(int timer) {
+		this.timer = timer;
+	}
+
+	boolean isCooking() {
+		return cooking;
+	}
+
+	void setCooking(boolean cooking) {
+		this.cooking = cooking;
+	}
+
+	boolean isWithItem() {
+		return withItem;
+	}
+
+	void setWithItem(boolean withItem) {
+		this.withItem = withItem;
+	}
+
+	MicrowaveState getState() {
+		return state;
+	}
+
+	void setState(MicrowaveState state) {
+		this.state = state;
+	}
+
+	Heating getHeatingConnection() {
+		return heatingConnection;
+	}
+
+	Lamp getLampConnection() {
+		return lampConnection;
+	}
+
+	Turnable getTurnableConnection() {
+		return turnableConnection;
+	}
+
+	Beeper getBeeperConnection() {
+		return beeperConnection;
+	}
+
+	Display getDisplayConnection() {
+		return displayConnection;
+	}
+	
+	
 }
