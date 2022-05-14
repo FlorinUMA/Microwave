@@ -14,10 +14,11 @@ public class Microwave {
 	private Display displayConnection = new Display();
 
 	public Microwave() {
-		doorOpen = false;
-		power = 0;
 		cooking = false;
 		withItem = false;
+		doorOpen = false;
+		power = 0;
+		timer = 0;
 		state = new ClosedWithNoItem(this);
 	}
 
@@ -38,13 +39,11 @@ public class Microwave {
 	}
 
 	public void power_inc() {
-		// state.power_inc(this);
 		power++;
 		displayConnection.setDisplay(Integer.toString(power));
 	}
 
 	public void power_desc() {
-		// state.power_desc(this);
 		if (power > 0) {
 			power--;
 			displayConnection.setDisplay(Integer.toString(power));
@@ -57,13 +56,11 @@ public class Microwave {
 	}
 
 	public void timer_inc() {
-		//state.timer_inc(this);
 		timer++;
 		displayConnection.setDisplay(Integer.toString(timer));
 	}
 
 	public void timer_desc() {
-		//state.timer_desc(this);
 		if (timer > 0) {
 			timer--;
 			displayConnection.setDisplay(Integer.toString(timer));
@@ -86,9 +83,9 @@ public class Microwave {
 	public void tick() {
 		state.tick(this);
 	}
-	
-	//GETTERS Y SETTER. NOTHING IMPORTANT HERE
-	
+
+	// GETTERS Y SETTERS
+
 	boolean isDoorOpen() {
 		return doorOpen;
 	}
@@ -156,6 +153,5 @@ public class Microwave {
 	Display getDisplayConnection() {
 		return displayConnection;
 	}
-	
-	
+
 }
