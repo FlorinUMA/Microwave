@@ -11,6 +11,10 @@ class MicrowaveTest {
 		// la información correcta en el display
 		m.timer_reset();
 		m.power_reset();
+		m.timer_desc();
+		m.power_desc();
+		Assertions.assertEquals(0, m.getTimer());
+		Assertions.assertEquals(0, m.getPower());
 		aumentaTiempo(10);
 		Assertions.assertEquals(10, m.getTimer());
 		Assertions.assertEquals("10", m.getDisplayConnection().getDisplay());
@@ -207,6 +211,7 @@ class MicrowaveTest {
 		//Comprobamos que el microondas para cuando se abre la puerta
 		m.door_opened();
 		Assertions.assertTrue(m.getState() instanceof OpenWithItem);
+		Assertions.assertFalse(BeeperListener.hasTheBeeberSound(3));
 		testOpenWithItem();
 		
 		//Ponemos el microondas a cocinar otra vez
@@ -225,13 +230,17 @@ class MicrowaveTest {
 		m.power_reset();
 		Assertions.assertTrue(m.getState() instanceof ClosedWithItem);
 		aumentaPotencia(20);
+		Assertions.assertFalse(BeeperListener.hasTheBeeberSound(3));
 		
-		//Probamos que el microondas para correctamente cuando se queda sin tiempo
+		//Probamos que el microondas se detiene correctamente tras quedarse sin tiempo
 		m.cooking_start();
 		Assertions.assertEquals(10, m.getTimer());
 		tiempoPasa(10);
 		Assertions.assertEquals(0, m.getTimer());
 		Assertions.assertTrue(m.getState() instanceof ClosedWithItem);
+		Assertions.assertEquals("Food is ready", m.getDisplayConnection().getDisplay());
+		Assertions.assertTrue(BeeperListener.hasTheBeeberSound(3));
+		BeeperListener.resetListener(); //Reiniciamos el Listener ya que la comida se ha terminado de cocinar
 		
 		//Comprobamos que cumple correctamente el resto de funcionalidades al estar terminar de cocinar
 		testClosedWithItem();
