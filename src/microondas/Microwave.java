@@ -85,7 +85,7 @@ public class Microwave {
 	}
 
 	// GETTERS Y SETTERS
-
+	
 	boolean isDoorOpen() {
 		return doorOpen;
 	}
@@ -138,20 +138,41 @@ public class Microwave {
 		return heatingConnection;
 	}
 
+	void setHeatingConnection(Heating heatingConnection) {
+		this.heatingConnection = heatingConnection;
+	}
+
 	Lamp getLampConnection() {
 		return lampConnection;
+	}
+
+	void setLampConnection(Lamp lampConnection) {
+		this.lampConnection = lampConnection;
 	}
 
 	Turnable getTurnableConnection() {
 		return turnableConnection;
 	}
 
+	void setTurnableConnection(Turnable turnableConnection) {
+		this.turnableConnection = turnableConnection;
+	}
+
 	Beeper getBeeperConnection() {
 		return beeperConnection;
+	}
+
+	void setBeeperConnection(Beeper beeperConnection) {
+		this.beeperConnection = beeperConnection;
 	}
 
 	Display getDisplayConnection() {
 		return displayConnection;
 	}
+
+	void setDisplayConnection(Display displayConnection) {
+		this.displayConnection = displayConnection;
+	}
+
 
 }

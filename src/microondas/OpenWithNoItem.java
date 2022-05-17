@@ -4,10 +4,10 @@ public class OpenWithNoItem implements MicrowaveState {
 
 	public OpenWithNoItem(Microwave m) {
 		m.getLampConnection().lampOn();
-//		m.getHeatingConnection().heatingOff();
-//		m.getTurnableConnection().turnable_stop();
-//		m.setCooking(false);
-//		m.setWithItem(false);
+		m.getHeatingConnection().heatingOff();
+		m.getTurnableConnection().turnable_stop();
+		m.setCooking(false);
+		m.setWithItem(false);
 		m.setDoorOpen(true);
 	}
 

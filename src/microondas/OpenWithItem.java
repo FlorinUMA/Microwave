@@ -30,7 +30,6 @@ public class OpenWithItem implements MicrowaveState {
 
 	@Override
 	public void item_removed(Microwave m) {
-		
 		m.setState(new OpenWithNoItem(m));
 	}
 

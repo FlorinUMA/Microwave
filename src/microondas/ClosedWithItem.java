@@ -14,7 +14,6 @@ public class ClosedWithItem implements MicrowaveState {
 	@Override
 	public void door_opened(Microwave m) {
 		m.setState(new OpenWithItem(m));
-
 	}
 
 	@Override

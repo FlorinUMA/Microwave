@@ -5,7 +5,7 @@ public class Cooking implements MicrowaveState{
 		m.getLampConnection().lampOn();
 		m.getHeatingConnection().setPower(m.getPower());
 		m.getHeatingConnection().heatingOn();
-		m.getTurnableConnection().turnable_stop();
+		m.getTurnableConnection().turnable_start();
 		m.setCooking(true);
 		m.setDoorOpen(false);
 		m.setWithItem(true);
@@ -58,9 +58,10 @@ public class Cooking implements MicrowaveState{
 
 	@Override
 	public void tick(Microwave m) {
-		if (m.getTimer() > 0) {
+		if (m.getTimer() > 1) {
 			m.timer_desc();
 		} else {
+			m.timer_desc();
 			m.getBeeperConnection().beep(3);
 			m.getDisplayConnection().setDisplay("Food is ready");
 			cooking_stop(m);
