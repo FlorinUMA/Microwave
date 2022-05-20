@@ -30,6 +30,20 @@ public class StepDefinitions {
 
 	}
 
+	@Given("a full closed microwave")
+	public void a_full_closed_microwave() {
+		an_opened_full_microwave();
+		m.door_closed();
+	}
+
+	@Given("a full closed microwave cooking with a timing of {int} seconds and a power of {int}")
+	public void a_full_closed_microwave_cooking_with_a_timing_of_seconds_and_a_power_of(Integer time, Integer power) {
+		a_full_closed_microwave();
+		i_set_time_to_seconds(time);
+		i_set_the_power_to(power);
+		m.cooking_start();
+	}
+
 	@When("I open the door")
 	public void i_open_the_door() {
 		m.door_opened();
@@ -81,6 +95,37 @@ public class StepDefinitions {
 		m.power_reset();
 	}
 
+	@When("I close the door")
+	public void i_close_the_door() {
+		m.door_closed();
+	}
+
+	@When("it passes {int} seconds")
+	public void it_passes_seconds(Integer t) {
+		pass_time(t);
+	}
+
+	@When("I press the increase power button")
+	public void i_press_the_increase_power_button() {
+		m.power_inc();
+		;
+	}
+
+	@When("I press the decrease timer button")
+	public void i_press_the_decrease_timer_button() {
+		m.timer_desc();
+	}
+
+	@When("I press the decrease power button")
+	public void i_press_the_decrease_power_button() {
+		m.power_desc();
+	}
+
+	@When("I press the increase timer button")
+	public void i_press_the_increase_timer_button() {
+		m.timer_inc();
+	}
+
 	@Then("the door opens")
 	public void the_door_opens_and_the_light_turns_on() {
 		Assertions.assertTrue(m.isDoorOpen());
@@ -130,61 +175,37 @@ public class StepDefinitions {
 	public void the_food_is_placed() {
 		Assertions.assertTrue(m.isWithItem());
 	}
-	
-	
-	
-	
-	
-	
-	
-	@When("I close the door")
-	public void i_close_the_door() {
-	    m.door_closed();
-	}
+
 	@Then("the door is closed")
 	public void the_door_is_closed() {
-	    Assertions.assertFalse(m.isDoorOpen());
-	}
-	@Then("the light are not on")
-	public void the_light_are_not_on() {
-	    Assertions.assertFalse(m.getLampConnection().isLampOn());
+		Assertions.assertFalse(m.isDoorOpen());
 	}
 
-	@Given("a full closed microwave")
-	public void a_full_closed_microwave() {
-		an_opened_full_microwave();
-		m.door_closed();
+	@Then("the light are not on")
+	public void the_light_are_not_on() {
+		Assertions.assertFalse(m.getLampConnection().isLampOn());
 	}
+
 	@Then("the microwave must start cooking")
 	public void the_microwave_must_start_cooking() {
-	    Assertions.assertTrue(m.isCooking());
+		Assertions.assertTrue(m.isCooking());
 	}
 
 	@Then("the plate is turning")
 	public void the_plate_is_turning() {
-	   Assertions.assertTrue(m.getTurnableConnection().isMoving());;
+		Assertions.assertTrue(m.getTurnableConnection().isMoving());
+		;
 	}
+
 	@Then("the microwave is heating")
 	public void the_microwave_is_heating() {
-	    Assertions.assertTrue(m.getHeatingConnection().isHeating());
+		Assertions.assertTrue(m.getHeatingConnection().isHeating());
 	}
-	
-	@Given("a full closed microwave cooking with a timing of {int} seconds and a power of {int}")
-	public void a_full_closed_microwave_cooking_with_a_timing_of_seconds_and_a_power_of(Integer time, Integer power) {
-		a_full_closed_microwave();
-		i_set_time_to_seconds(time);
-		i_set_the_power_to(power);
-		m.cooking_start();
-	}
-	@When("I press the increase timer button")
-	public void i_press_the_increase_timer_button() {
-	    m.timer_inc();
-	}
-	
+
 	@Then("the cooking time must be {int}")
 	public void the_cooking_time_must_be(Integer time) {
-	   pass_time(time);
-	   Assertions.assertEquals("Food is ready", m.getDisplayConnection().getDisplay());
+		pass_time(time);
+		Assertions.assertEquals("Food is ready", m.getDisplayConnection().getDisplay());
 	}
 
 	@Then("the microwave is not cooking")
@@ -192,32 +213,11 @@ public class StepDefinitions {
 		Assertions.assertFalse(m.isCooking());
 	}
 
-	@When("it passes {int} seconds")
-	public void it_passes_seconds(Integer t) {
-	    pass_time(t);
-	}
-	
 	@Then("the beeper sounds {int} times")
 	public void the_beeper_sound_times(Integer t) {
-	  Assertions.assertTrue(BeeperListener.hasTheBeeberSound(t));
-	}
-	
-	@When("I press the increase power button")
-	public void i_press_the_increase_power_button() {
-	    m.power_inc();;
-	}
-	
-	@When("I press the decrease timer button")
-	public void i_press_the_decrease_timer_button() {
-	    m.timer_desc();
+		Assertions.assertTrue(BeeperListener.hasTheBeeberSound(t));
 	}
 
-	@When("I press the decrease power button")
-	public void i_press_the_decrease_power_button() {
-	    m.power_desc();
-	}
-
-	
 	private void pass_time(int t) {
 		for (int i = 0; i < t; i++) {
 			m.tick();

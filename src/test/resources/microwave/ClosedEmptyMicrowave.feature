@@ -1,4 +1,4 @@
-Feature: Using a closed microwave with no item in it
+Feature: Using a closed microwave with no item on it
 
   Scenario: Open a closed microwave
     Given a closed empty microwave

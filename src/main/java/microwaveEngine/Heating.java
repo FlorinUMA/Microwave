@@ -13,7 +13,9 @@ public class Heating {
 	}
 
 	void setPower(int power) {
-		this.power = power;
+		if (power >= 0) {
+			this.power = power;
+		}
 	}
 
 	int getPower() {

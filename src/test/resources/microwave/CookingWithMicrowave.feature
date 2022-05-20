@@ -63,6 +63,13 @@ Feature: Cooking with a closed full microwave
     And the plate is not turning
     And the microwave is not heating
 
+  Scenario: Start again cooking after opening the microwave while it was cooking
+    Given a full closed microwave cooking with a timing of 3 seconds and a power of 50
+    When I open the door
+    And I close the door
+    And I press the increase timer button
+    Then the microwave must display "4"
+
   Scenario: Abort cooking process by resetting the timer
     Given a full closed microwave cooking with a timing of 1 seconds and a power of 2
     When I press reset timer button

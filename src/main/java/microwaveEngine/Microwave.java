@@ -58,7 +58,7 @@ public class Microwave {
 	}
 
 	public void timer_desc() {
-		state.timer_desc(this); 
+		state.timer_desc(this);
 	}
 
 	public void timer_reset() {
@@ -79,7 +79,7 @@ public class Microwave {
 	}
 
 	// GETTERS Y SETTERS
-	
+
 	public boolean isDoorOpen() {
 		return doorOpen;
 	}
@@ -132,41 +132,20 @@ public class Microwave {
 		return heatingConnection;
 	}
 
-	void setHeatingConnection(Heating heatingConnection) {
-		this.heatingConnection = heatingConnection;
-	}
-
 	public Lamp getLampConnection() {
 		return lampConnection;
-	}
-
-	void setLampConnection(Lamp lampConnection) {
-		this.lampConnection = lampConnection;
 	}
 
 	public Turnable getTurnableConnection() {
 		return turnableConnection;
 	}
 
-	void setTurnableConnection(Turnable turnableConnection) {
-		this.turnableConnection = turnableConnection;
-	}
-
 	Beeper getBeeperConnection() {
 		return beeperConnection;
-	}
-
-	void setBeeperConnection(Beeper beeperConnection) {
-		this.beeperConnection = beeperConnection;
 	}
 
 	public Display getDisplayConnection() {
 		return displayConnection;
 	}
-
-	void setDisplayConnection(Display displayConnection) {
-		this.displayConnection = displayConnection;
-	}
-
 
 }
